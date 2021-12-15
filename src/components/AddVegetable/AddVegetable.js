@@ -4,11 +4,8 @@ import React, { Component } from "react";
 class AddV extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { title: "this component for add vegetable", text: "", veg: "onion" ,array:[] }
+        this.state = { title: "this component for add vegetable", text: "", veg: "", array: [] }
         this.title = this.title.bind(this)
-        // this.text = this.text.bing(this)
-        // this.veg = this.veg.bing(this)
-
         this.funcInput = this.funcInput.bind(this)
         this.btnFunc = this.btnFunc.bind(this)
     }
@@ -17,16 +14,20 @@ class AddV extends React.Component {
         const nameOfTitle = this.state.title;
         this.setState({ title: nameOfTitle });
     }
+    changeVeg(){
+        this.state.array.push(this.state.veg)
+        this.setState({ veg : this.state.veg})
+    }
 
     funcInput(event) {
-
-        const inp = event.target.value;
-        this.setState({ text: inp })
+        // this.state.array.push(this.state.veg)
+        this.state.veg = event.target.value;
+        // this.setState({ veg : this.state.veg})
     }
 
     btnFunc() {
         const btn = this.state.veg;
-        this.setState({array: btn})
+        this.setState({ array: btn })
     }
 
 
@@ -39,10 +40,17 @@ class AddV extends React.Component {
                 <h1>{this.state.text}</h1>
                 <button onClick={this.btnFunc}>Add</button>
 
+
+
                 <ul>
-                    <li>{this.state.array}</li>
+                   
+                       {this.state.array.map((vegItem)=> <li>|{vegItem}</li>)}
+                    
+                    
                 </ul>
-               
+
+
+
 
             </div>
         )
